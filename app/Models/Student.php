@@ -9,17 +9,30 @@ class Student extends Model
 {
     use HasFactory;
 
-        protected $fillable = [
-                'nom', 'prenom', 'email', 'classe',
-                        'date_naissance', 'tuteur_nom', 'tuteur_contact', 'user_id',
-                            ];
+    protected $fillable = [
+        'last_name',
+        'first_name',
+        'birth_date',
+        'birth_place',
+        'father_name',
+        'father_job',
+        'mother_name',
+        'mother_job',
+        'parent_phone',
+        'parent_email',
+        'address',
+        'previous_school',
+        'previous_class',
+        'current_class',
+        'desired_career',
+    ];
 
-                                protected $casts = [
-                                        'date_naissance' => 'date',
-                                            ];
+    protected $casts = [
+        'birth_date' => 'date',
+    ];
 
-                                                public function user()
-                                                    {
-                                                            return $this->belongsTo(User::class);
-                                                                }
-                                                                }
+    public function getFullNameAttribute(): string
+    {
+        return "{$this->first_name} {$this->last_name}";
+    }
+}
