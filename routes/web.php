@@ -34,8 +34,36 @@ Route::middleware('auth')->group(function () {
         Route::get('/comptable', fn () => view('dashboards.comptable'))->name('comptable.dashboard');
     });
 
+    // ---------- Module Élèves ----------
     Route::middleware('role:administrateur,enseignant')->group(function () {
         Route::resource('students', \App\Http\Controllers\StudentController::class);
+    });
+
+    // ---------- Module Cours ----------
+    Route::middleware('role:administrateur,enseignant')->group(function () {
+        Route::resource('courses', \App\Http\Controllers\CourseController::class)
+            ->except(['show']);
+    });
+
+    // ---------- Module Examens ----------
+    Route::middleware('role:administrateur,enseignant')->group(function () {
+
+        // Planification des examens
+        Route::resource('exams', \App\Http\Controllers\ExamController::class)
+            ->except(['show']);
+
+        // Saisie des notes pour un examen donné
+        Route::get('/exams/{exam}/grades', [\App\Http\Controllers\GradeController::class, 'edit'])
+            ->name('grades.edit');
+        Route::put('/exams/{exam}/grades', [\App\Http\Controllers\GradeController::class, 'update'])
+            ->name('grades.update');
+
+        // Bulletins
+        Route::get('/bulletins', [\App\Http\Controllers\BulletinController::class, 'select'])
+            ->name('bulletins.select');
+        Route::get('/bulletins/{student}', [\App\Http\Controllers\BulletinController::class, 'show'])
+            ->name('bulletins.show');
+
     });
 
     Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
