@@ -15,7 +15,14 @@ Route::middleware('auth')->group(function () {
     })->name('dashboard');
 
     Route::middleware('role:administrateur')->group(function () {
-        Route::get('/admin', fn () => view('dashboards.admin'))->name('admin.dashboard');
+        Route::get('/admin', function () {
+            $totalStudents = \App\Models\Student::count();
+            $totalTeachers = \App\Models\User::where('role', 'enseignant')->count();
+            $totalPayments = \App\Models\Payment::sum('amount');
+            $recentPayments = \App\Models\Payment::with('student')->latest('paid_at')->limit(5)->get();
+
+            return view('dashboards.admin', compact('totalStudents', 'totalTeachers', 'totalPayments', 'recentPayments'));
+        })->name('admin.dashboard');
     });
 
     Route::middleware('role:enseignant')->group(function () {
