@@ -36,7 +36,12 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:eleve')->group(function () {
-        Route::get('/eleve', fn () => view('dashboards.eleve'))->name('eleve.dashboard');
+        Route::get('/eleve', function () {
+            $student = auth()->user()->student;
+            $payments = $student ? $student->payments()->latest('paid_at')->limit(5)->get() : collect();
+
+            return view('dashboards.eleve', compact('student', 'payments'));
+        })->name('eleve.dashboard');
     });
 
     Route::middleware('role:parent')->group(function () {
