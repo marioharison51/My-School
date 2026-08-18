@@ -29,9 +29,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/enseignant', function () {
             $myCourses = \App\Models\Course::count();
             $totalStudents = \App\Models\Student::count();
-            $totalExams = \App\Models\Exam::count();
+            $upcomingExams = \App\Models\Exam::orderBy('exam_date')->limit(5)->get();
 
-            return view('dashboards.enseignant', compact('myCourses', 'totalStudents', 'totalExams'));
+            return view('dashboards.enseignant', compact('myCourses', 'totalStudents', 'upcomingExams'));
         })->name('enseignant.dashboard');
     });
 
