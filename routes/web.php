@@ -26,7 +26,13 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:enseignant')->group(function () {
-        Route::get('/enseignant', fn () => view('dashboards.enseignant'))->name('enseignant.dashboard');
+        Route::get('/enseignant', function () {
+            $myCourses = \App\Models\Course::count();
+            $totalStudents = \App\Models\Student::count();
+            $totalExams = \App\Models\Exam::count();
+
+            return view('dashboards.enseignant', compact('myCourses', 'totalStudents', 'totalExams'));
+        })->name('enseignant.dashboard');
     });
 
     Route::middleware('role:eleve')->group(function () {
