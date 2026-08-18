@@ -39,6 +39,16 @@ Route::middleware('auth')->group(function () {
         Route::resource('students', \App\Http\Controllers\StudentController::class);
     });
 
+    // ---------- Module Paiements ----------
+    Route::middleware('role:administrateur,comptable')->group(function () {
+        Route::get('/students/{student}/payments', [\App\Http\Controllers\PaymentController::class, 'index'])
+            ->name('payments.index');
+        Route::get('/students/{student}/payments/create', [\App\Http\Controllers\PaymentController::class, 'create'])
+            ->name('payments.create');
+        Route::post('/students/{student}/payments', [\App\Http\Controllers\PaymentController::class, 'store'])
+            ->name('payments.store');
+    });
+
     // ---------- Module Cours ----------
     Route::middleware('role:administrateur,enseignant')->group(function () {
         Route::resource('courses', \App\Http\Controllers\CourseController::class)
@@ -71,4 +81,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [\App\Http\Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
- require __DIR__.'/auth.php';
+require __DIR__.'/auth.php';
