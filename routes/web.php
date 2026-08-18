@@ -44,7 +44,14 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:comptable')->group(function () {
-        Route::get('/comptable', fn () => view('dashboards.comptable'))->name('comptable.dashboard');
+        Route::get('/comptable', function () {
+            $totalPayments = \App\Models\Payment::sum('amount');
+            $paymentsCount = \App\Models\Payment::count();
+            $recentPayments = \App\Models\Payment::with('student', 'recordedBy')->latest('paid_at')->limit(10)->get();
+            $byMethod = \App\Models\Payment::selectRaw('method, SUM(amount) as total')->groupBy('method')->get();
+
+            return view('dashboards.comptable', compact('totalPayments', 'paymentsCount', 'recentPayments', 'byMethod'));
+        })->name('comptable.dashboard');
     });
 
     // ---------- Module Élèves ----------
