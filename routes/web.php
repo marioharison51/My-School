@@ -132,6 +132,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/messages/{message}', [\App\Http\Controllers\MessageController::class, 'show'])
         ->name('messages.show');
 
+    // ---------- Annonces & Événements ----------
+    Route::get('/announcements', [\App\Http\Controllers\AnnouncementController::class, 'index'])
+        ->name('announcements.index');
+    Route::middleware('role:administrateur')->group(function () {
+        Route::get('/announcements/create', [\App\Http\Controllers\AnnouncementController::class, 'create'])
+            ->name('announcements.create');
+        Route::post('/announcements', [\App\Http\Controllers\AnnouncementController::class, 'store'])
+            ->name('announcements.store');
+        Route::delete('/announcements/{announcement}', [\App\Http\Controllers\AnnouncementController::class, 'destroy'])
+            ->name('announcements.destroy');
+    });
+
     Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [\App\Http\Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');
