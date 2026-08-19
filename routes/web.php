@@ -45,7 +45,13 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:parent')->group(function () {
-        Route::get('/parent', fn () => view('dashboards.parent'))->name('parent.dashboard');
+        Route::get('/parent', function () {
+            $children = auth()->user()->children()->with(['payments' => function ($q) {
+                $q->latest('paid_at')->limit(3);
+            }])->get();
+
+            return view('dashboards.parent', compact('children'));
+        })->name('parent.dashboard');
     });
 
     Route::middleware('role:comptable')->group(function () {
