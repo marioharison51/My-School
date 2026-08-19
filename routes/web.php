@@ -89,6 +89,16 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:administrateur,enseignant')->group(function () {
         Route::resource('courses', \App\Http\Controllers\CourseController::class)
             ->except(['show']);
+
+        // Ressources de cours (PDF, vidéos, quiz)
+        Route::get('/courses/{course}/resources', [\App\Http\Controllers\CourseResourceController::class, 'index'])
+            ->name('courses.resources.index');
+        Route::get('/courses/{course}/resources/create', [\App\Http\Controllers\CourseResourceController::class, 'create'])
+            ->name('courses.resources.create');
+        Route::post('/courses/{course}/resources', [\App\Http\Controllers\CourseResourceController::class, 'store'])
+            ->name('courses.resources.store');
+        Route::delete('/courses/{course}/resources/{resource}', [\App\Http\Controllers\CourseResourceController::class, 'destroy'])
+            ->name('courses.resources.destroy');
     });
 
     // ---------- Module Examens ----------
