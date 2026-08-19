@@ -112,6 +112,16 @@ Route::middleware('auth')->group(function () {
 
     });
 
+    // ---------- Module Communication ----------
+    Route::get('/messages', [\App\Http\Controllers\MessageController::class, 'index'])
+        ->name('messages.index');
+    Route::get('/messages/create', [\App\Http\Controllers\MessageController::class, 'create'])
+        ->name('messages.create');
+    Route::post('/messages', [\App\Http\Controllers\MessageController::class, 'store'])
+        ->name('messages.store');
+    Route::get('/messages/{message}', [\App\Http\Controllers\MessageController::class, 'show'])
+        ->name('messages.show');
+
     Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [\App\Http\Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');
