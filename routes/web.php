@@ -23,6 +23,11 @@ Route::middleware('auth')->group(function () {
 
             return view('dashboards.admin', compact('totalStudents', 'totalTeachers', 'totalPayments', 'recentPayments'));
         })->name('admin.dashboard');
+
+        Route::get('/admin/users', [\App\Http\Controllers\UserManagementController::class, 'index'])
+            ->name('admin.users.index');
+        Route::patch('/admin/users/{user}/role', [\App\Http\Controllers\UserManagementController::class, 'updateRole'])
+            ->name('admin.users.updateRole');
     });
 
     Route::middleware('role:enseignant')->group(function () {
