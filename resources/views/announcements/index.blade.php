@@ -16,7 +16,7 @@
 
             @if (auth()->user()->role === 'administrateur')
                 <div class="flex justify-end mb-4">
-                    <a href="{{ route('announcements.create') }}" class="px-4 py-2 bg-gray-900 text-white rounded">
+                    <a href="{{ route('announcements.create') }}" class="px-4 py-2 bg-primary-700 hover:bg-primary-600 text-white rounded">
                         + Nouvelle annonce
                     </a>
                 </div>

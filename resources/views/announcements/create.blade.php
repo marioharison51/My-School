@@ -35,7 +35,7 @@
 
                     <div class="flex justify-end gap-2">
                         <a href="{{ route('announcements.index') }}" class="px-4 py-2 text-gray-600">Annuler</a>
-                        <button type="submit" class="px-4 py-2 bg-gray-900 text-white rounded">
+                        <button type="submit" class="px-4 py-2 bg-primary-700 hover:bg-primary-600 text-white rounded">
                             Publier
                         </button>
                     </div>

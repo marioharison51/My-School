@@ -20,7 +20,7 @@
                         Total payé : {{ number_format($total, 2) }} Ar
                     </div>
                     <a href="{{ route('payments.create', $student) }}"
-                       class="px-4 py-2 bg-gray-900 text-white rounded">
+                       class="px-4 py-2 bg-primary-700 hover:bg-primary-600 text-white rounded">
                         + Nouveau paiement
                     </a>
                 </div>
