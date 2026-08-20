@@ -9,22 +9,22 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="bg-white shadow-sm rounded-lg p-6">
+                <div class="bg-white shadow-sm rounded-lg p-6 border-t-4 border-primary-600">
                     <div class="text-sm text-gray-500">Élèves inscrits</div>
-                    <div class="text-3xl font-bold">{{ $totalStudents }}</div>
+                    <div class="text-3xl font-bold text-primary-700">{{ $totalStudents }}</div>
                 </div>
-                <div class="bg-white shadow-sm rounded-lg p-6">
+                <div class="bg-white shadow-sm rounded-lg p-6 border-t-4 border-primary-600">
                     <div class="text-sm text-gray-500">Enseignants</div>
-                    <div class="text-3xl font-bold">{{ $totalTeachers }}</div>
+                    <div class="text-3xl font-bold text-primary-700">{{ $totalTeachers }}</div>
                 </div>
-                <div class="bg-white shadow-sm rounded-lg p-6">
+                <div class="bg-white shadow-sm rounded-lg p-6 border-t-4 border-primary-600">
                     <div class="text-sm text-gray-500">Total encaissé</div>
-                    <div class="text-3xl font-bold">{{ number_format($totalPayments, 2) }} Ar</div>
+                    <div class="text-3xl font-bold text-primary-700">{{ number_format($totalPayments, 2) }} Ar</div>
                 </div>
             </div>
 
             <div class="bg-white shadow-sm rounded-lg p-6">
-                <h3 class="font-semibold text-lg mb-4">Bloc Paiement — Derniers paiements</h3>
+                <h3 class="font-semibold text-lg mb-4 text-primary-800">Bloc Paiement — Derniers paiements</h3>
                 <table class="w-full text-left">
                     <thead>
                         <tr class="border-b">
@@ -48,7 +48,7 @@
             </div>
 
             <div class="bg-white shadow-sm rounded-lg p-6">
-                <h3 class="font-semibold text-lg mb-2">Bloc Communication</h3>
+                <h3 class="font-semibold text-lg mb-2 text-primary-800">Bloc Communication</h3>
                 <p class="text-gray-500">Planification des événements et annonces — à venir.</p>
             </div>
 
