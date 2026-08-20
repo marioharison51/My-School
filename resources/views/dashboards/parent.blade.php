@@ -9,8 +9,8 @@
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
             @forelse ($children as $child)
-                <div class="bg-white shadow-sm rounded-lg p-6">
-                    <h3 class="font-semibold text-lg mb-2">{{ $child->full_name }} — {{ $child->current_class }}</h3>
+                <div class="bg-white shadow-sm rounded-lg p-6 border-t-4 border-primary-600">
+                    <h3 class="font-semibold text-lg mb-2 text-primary-800">{{ $child->full_name }} — {{ $child->current_class }}</h3>
 
                     <div class="mt-4">
                         <h4 class="font-medium text-gray-700 mb-2">Bloc Résultats</h4>

@@ -13,19 +13,19 @@
                     Ton compte n'est pas encore lié à une fiche élève. Contacte l'administration.
                 </div>
             @else
-                <div class="bg-white shadow-sm rounded-lg p-6">
-                    <h3 class="font-semibold text-lg mb-2">Mes informations</h3>
+                <div class="bg-white shadow-sm rounded-lg p-6 border-t-4 border-primary-600">
+                    <h3 class="font-semibold text-lg mb-2 text-primary-800">Mes informations</h3>
                     <p><span class="text-gray-500">Nom :</span> {{ $student->full_name }}</p>
                     <p><span class="text-gray-500">Classe :</span> {{ $student->current_class }}</p>
                 </div>
 
                 <div class="bg-white shadow-sm rounded-lg p-6">
-                    <h3 class="font-semibold text-lg mb-2">Bloc Résultats</h3>
+                    <h3 class="font-semibold text-lg mb-2 text-primary-800">Bloc Résultats</h3>
                     <p class="text-gray-500">Notes, moyenne et rang — à venir.</p>
                 </div>
 
                 <div class="bg-white shadow-sm rounded-lg p-6">
-                    <h3 class="font-semibold text-lg mb-4">Derniers paiements</h3>
+                    <h3 class="font-semibold text-lg mb-4 text-primary-800">Derniers paiements</h3>
                     <table class="w-full text-left">
                         <thead>
                             <tr class="border-b">
