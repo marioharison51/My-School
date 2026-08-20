@@ -83,6 +83,8 @@ Route::middleware('auth')->group(function () {
             ->name('payments.create');
         Route::post('/students/{student}/payments', [\App\Http\Controllers\PaymentController::class, 'store'])
             ->name('payments.store');
+        Route::get('/students/{student}/payments/{payment}/receipt', [\App\Http\Controllers\PaymentReceiptController::class, 'show'])
+            ->name('payments.receipt');
     });
 
     // ---------- Module Cours ----------
