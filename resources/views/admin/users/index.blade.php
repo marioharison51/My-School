@@ -41,7 +41,7 @@
                                             <option value="parent" {{ $user->role == 'parent' ? 'selected' : '' }}>Parent</option>
                                             <option value="comptable" {{ $user->role == 'comptable' ? 'selected' : '' }}>Comptable</option>
                                         </select>
-                                        <button type="submit" class="px-3 py-1 bg-gray-900 text-white rounded text-sm">
+                                        <button type="submit" class="px-3 py-1 bg-primary-700 hover:bg-primary-600 text-white rounded text-sm">
                                             Mettre à jour
                                         </button>
                                     </form>
