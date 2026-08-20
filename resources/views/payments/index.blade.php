@@ -33,6 +33,7 @@
                             <th class="py-2">Méthode</th>
                             <th class="py-2">Référence</th>
                             <th class="py-2">Enregistré par</th>
+                            <th class="py-2"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,10 +44,15 @@
                                 <td class="py-2">{{ $payment->method }}</td>
                                 <td class="py-2">{{ $payment->reference ?? '—' }}</td>
                                 <td class="py-2">{{ $payment->recordedBy->name }}</td>
+                                <td class="py-2">
+                                    <a href="{{ route('payments.receipt', [$student, $payment]) }}" target="_blank" class="text-primary-700">
+                                        Reçu PDF
+                                    </a>
+                                </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="py-4 text-gray-500">Aucun paiement enregistré.</td>
+                                <td colspan="6" class="py-4 text-gray-500">Aucun paiement enregistré.</td>
                             </tr>
                         @endforelse
                     </tbody>
