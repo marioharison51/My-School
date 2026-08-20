@@ -15,7 +15,7 @@
             @endif
 
             <div class="flex justify-end mb-4">
-                <a href="{{ route('courses.resources.create', $course) }}" class="px-4 py-2 bg-gray-900 text-white rounded">
+                <a href="{{ route('courses.resources.create', $course) }}" class="px-4 py-2 bg-primary-700 hover:bg-primary-600 text-white rounded">
                     + Ajouter une ressource
                 </a>
             </div>
@@ -37,9 +37,9 @@
                                 <td class="py-2 px-4">{{ ucfirst($resource->type) }}</td>
                                 <td class="py-2 px-4">
                                     @if ($resource->file_path)
-                                        <a href="{{ Storage::url($resource->file_path) }}" target="_blank" class="text-blue-600">Ouvrir le PDF</a>
+                                        <a href="{{ Storage::url($resource->file_path) }}" target="_blank" class="text-primary-700">Ouvrir le PDF</a>
                                     @elseif ($resource->url)
-                                        <a href="{{ $resource->url }}" target="_blank" class="text-blue-600">Ouvrir le lien</a>
+                                        <a href="{{ $resource->url }}" target="_blank" class="text-primary-700">Ouvrir le lien</a>
                                     @else
                                         —
                                     @endif
