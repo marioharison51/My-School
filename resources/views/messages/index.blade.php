@@ -15,7 +15,7 @@
             @endif
 
             <div class="flex justify-end mb-4">
-                <a href="{{ route('messages.create') }}" class="px-4 py-2 bg-gray-900 text-white rounded">
+                <a href="{{ route('messages.create') }}" class="px-4 py-2 bg-primary-700 hover:bg-primary-600 text-white rounded">
                     + Nouveau message
                 </a>
             </div>
@@ -34,7 +34,7 @@
                         @forelse ($received as $message)
                             <tr class="border-b hover:bg-gray-50">
                                 <td class="py-2 px-4">
-                                    <a href="{{ route('messages.show', $message) }}" class="text-blue-600">
+                                    <a href="{{ route('messages.show', $message) }}" class="text-primary-700">
                                         {{ $message->sender->name }}
                                     </a>
                                 </td>
