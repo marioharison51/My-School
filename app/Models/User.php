@@ -39,4 +39,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Student::class, 'parent_user_id');
     }
+
+    public function unreadMessagesCount(): int
+    {
+        return Message::where('recipient_id', $this->id)
+            ->whereNull('read_at')
+            ->count();
+    }
 }
