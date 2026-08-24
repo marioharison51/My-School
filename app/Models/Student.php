@@ -26,17 +26,24 @@ class Student extends Model
         'previous_school',
         'previous_class',
         'current_class',
+        'graduated_at',
         'desired_career',
         'consecutive_missed_payments',
     ];
 
     protected $casts = [
-        'birth_date' => 'date',
+        'birth_date'   => 'date',
+        'graduated_at' => 'date',
     ];
 
     public function getFullNameAttribute(): string
     {
         return "{$this->first_name} {$this->last_name}";
+    }
+
+    public function hasGraduated(): bool
+    {
+        return $this->graduated_at !== null;
     }
 
     public function payments()
