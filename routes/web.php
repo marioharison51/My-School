@@ -111,6 +111,8 @@ Route::middleware('auth')->group(function () {
             ->name('accounts.blockStudent');
         Route::post('/accounts/{user}/unblock', [\App\Http\Controllers\AdminAccountController::class, 'unblock'])
             ->name('accounts.unblock');
+        Route::post('/students/{student}/graduate', [\App\Http\Controllers\AdminAccountController::class, 'markGraduated'])
+            ->name('students.markGraduated');
         Route::delete('/students/{student}/expel', [\App\Http\Controllers\AdminAccountController::class, 'destroy'])
             ->name('students.expel');
     });
