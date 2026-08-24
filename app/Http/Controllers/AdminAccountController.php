@@ -61,6 +61,17 @@ class AdminAccountController extends Controller
     }
 
     /**
+     * Marque un élève comme diplômé (bac obtenu). Le compte reste actif
+     * mais perd l'accès à la section cours, comme un compte parent.
+     */
+    public function markGraduated(Student $student)
+    {
+        $student->update(['graduated_at' => now()]);
+
+        return back()->with('status', "{$student->full_name} marqué(e) diplômé(e). Le compte reste actif sans accès aux cours.");
+    }
+
+    /**
      * Suppression de compte suite à un renvoi (soft delete : conservé en base pour historique).
      */
     public function destroy(Student $student)
