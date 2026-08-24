@@ -20,6 +20,16 @@
                     </div>
 
                     <div>
+                        <label class="block font-medium text-sm text-gray-700">Payé par</label>
+                        <select name="payer_role" class="mt-1 block w-full border-gray-300 rounded-md" required>
+                            <option value="">-- Choisir --</option>
+                            <option value="eleve" {{ old('payer_role') == 'eleve' ? 'selected' : '' }}>Élève</option>
+                            <option value="parent" {{ old('payer_role') == 'parent' ? 'selected' : '' }}>Parent</option>
+                        </select>
+                        @error('payer_role') <p class="text-red-600 text-sm">{{ $message }}</p> @enderror
+                    </div>
+
+                    <div>
                         <label class="block font-medium text-sm text-gray-700">Méthode</label>
                         <select name="method" class="mt-1 block w-full border-gray-300 rounded-md" required>
                             <option value="">-- Choisir --</option>
