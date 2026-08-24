@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-5xl mx-auto sm:px-6 lg:px-8 space-y-6">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
             @forelse ($children as $child)
                 <div class="bg-white shadow-sm rounded-lg p-6 border-t-4 border-primary-600">
