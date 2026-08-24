@@ -25,6 +25,7 @@ class Student extends Model
         'previous_class',
         'current_class',
         'desired_career',
+        'consecutive_missed_payments',
     ];
 
     protected $casts = [
@@ -49,5 +50,15 @@ class Student extends Model
     public function parentUser()
     {
         return $this->belongsTo(User::class, 'parent_user_id');
+    }
+
+    public function fee()
+    {
+        return $this->hasOne(StudentFee::class)->latestOfMany();
+    }
+
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
     }
 }
