@@ -87,6 +87,22 @@ Route::middleware('auth')->group(function () {
             ->name('payments.receipt');
     });
 
+    // ---------- Écolage : montant mensuel par élève (admin) ----------
+    Route::middleware('role:administrateur')->group(function () {
+        Route::get('/students/{student}/fee', [\App\Http\Controllers\StudentFeeController::class, 'edit'])
+            ->name('student-fees.edit');
+        Route::put('/students/{student}/fee', [\App\Http\Controllers\StudentFeeController::class, 'update'])
+            ->name('student-fees.update');
+    });
+
+    // ---------- Factures / échéances ----------
+    Route::middleware('role:administrateur,comptable')->group(function () {
+        Route::get('/invoices', [\App\Http\Controllers\InvoiceController::class, 'index'])
+            ->name('invoices.index');
+        Route::get('/students/{student}/invoices', [\App\Http\Controllers\InvoiceController::class, 'forStudent'])
+            ->name('invoices.student');
+    });
+
     // ---------- Module Cours (gestion admin/enseignant) ----------
     Route::middleware('role:administrateur,enseignant')->group(function () {
         Route::resource('courses', \App\Http\Controllers\CourseController::class)
