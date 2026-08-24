@@ -12,19 +12,12 @@ class StudentCourseController extends Controller
      */
     public function index(Request $request)
     {
-        $user = $request->user();
-        $role = $user->role instanceof \App\Enums\Role ? $user->role->value : $user->role;
-
-        if ($role === 'eleve') {
-            $student = $user->student;
-        } else {
-            // Parent : on prend le premier enfant par défaut, ou celui passé en paramètre
-            $student = $request->filled('student')
-                ? $user->children()->findOrFail($request->input('student'))
-                : $user->children()->first();
-        }
+        $student = $this->resolveStudent($request);
 
         abort_if(! $student, 404, "Aucun élève associé à ce compte.");
+
+        abort_if($student->hasGraduated(), 403,
+            "Cet élève a obtenu son baccalauréat et n'a plus accès à la section cours.");
 
         $courses = Course::query()
             ->where('class_name', $student->current_class)
@@ -40,25 +33,32 @@ class StudentCourseController extends Controller
      */
     public function show(Request $request, Course $course)
     {
-        $user = $request->user();
-        $role = $user->role instanceof \App\Enums\Role ? $user->role->value : $user->role;
-
-        if ($role === 'eleve') {
-            $student = $user->student;
-        } else {
-            $student = $request->filled('student')
-                ? $user->children()->findOrFail($request->input('student'))
-                : $user->children()->first();
-        }
+        $student = $this->resolveStudent($request);
 
         abort_if(! $student, 404, "Aucun élève associé à ce compte.");
 
-        // Un élève/parent ne peut voir que les cours de sa propre classe
+        abort_if($student->hasGraduated(), 403,
+            "Cet élève a obtenu son baccalauréat et n'a plus accès à la section cours.");
+
         abort_unless($course->class_name === $student->current_class, 403,
             "Ce cours n'appartient pas à votre classe.");
 
         $course->load('teacher', 'resources');
 
         return view('student-courses.show', compact('course', 'student'));
+    }
+
+    private function resolveStudent(Request $request)
+    {
+        $user = $request->user();
+        $role = $user->role instanceof \App\Enums\Role ? $user->role->value : $user->role;
+
+        if ($role === 'eleve') {
+            return $user->student;
+        }
+
+        return $request->filled('student')
+            ? $user->children()->find($request->input('student'))
+            : $user->children()->first();
     }
 }
