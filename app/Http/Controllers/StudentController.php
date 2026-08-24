@@ -48,7 +48,12 @@ class StudentController extends Controller
 
     public function show(Student $student)
     {
-        return view('students.show', compact('student'));
+        $student->load(['user', 'parentUser', 'fee']);
+
+        $recentPayments = $student->payments()->latest('paid_at')->limit(5)->get();
+        $recentInvoices = $student->invoices()->orderBy('due_date', 'desc')->limit(6)->get();
+
+        return view('students.show', compact('student', 'recentPayments', 'recentInvoices'));
     }
 
     public function edit(Student $student)
