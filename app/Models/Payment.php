@@ -14,6 +14,7 @@ class Payment extends Model
         'recorded_by',
         'amount',
         'method',
+        'payer_role',
         'reference',
         'paid_at',
         'notes',
