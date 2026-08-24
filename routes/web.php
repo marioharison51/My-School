@@ -87,7 +87,7 @@ Route::middleware('auth')->group(function () {
             ->name('payments.receipt');
     });
 
-    // ---------- Module Cours ----------
+    // ---------- Module Cours (gestion admin/enseignant) ----------
     Route::middleware('role:administrateur,enseignant')->group(function () {
         Route::resource('courses', \App\Http\Controllers\CourseController::class)
             ->except(['show']);
@@ -101,6 +101,24 @@ Route::middleware('auth')->group(function () {
             ->name('courses.resources.store');
         Route::delete('/courses/{course}/resources/{resource}', [\App\Http\Controllers\CourseResourceController::class, 'destroy'])
             ->name('courses.resources.destroy');
+    });
+
+    // ---------- Consultation des cours (élève / parent) ----------
+    Route::middleware(['role:eleve,parent', 'exam.block'])->group(function () {
+        Route::get('/mes-cours', [\App\Http\Controllers\StudentCourseController::class, 'index'])
+            ->name('student.courses.index');
+        Route::get('/mes-cours/{course}', [\App\Http\Controllers\StudentCourseController::class, 'show'])
+            ->name('student.courses.show');
+    });
+
+    // ---------- Gestion de la période d'examens (admin uniquement) ----------
+    Route::middleware('role:administrateur')->group(function () {
+        Route::get('/exam-periods', [\App\Http\Controllers\ExamPeriodController::class, 'index'])
+            ->name('exam-periods.index');
+        Route::post('/exam-periods', [\App\Http\Controllers\ExamPeriodController::class, 'store'])
+            ->name('exam-periods.store');
+        Route::patch('/exam-periods/{examPeriod}/toggle', [\App\Http\Controllers\ExamPeriodController::class, 'toggle'])
+            ->name('exam-periods.toggle');
     });
 
     // ---------- Module Examens ----------
