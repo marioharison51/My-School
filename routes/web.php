@@ -103,6 +103,36 @@ Route::middleware('auth')->group(function () {
             ->name('invoices.student');
     });
 
+    // ---------- Blocage / déblocage de comptes (admin / direction) ----------
+    Route::middleware('role:administrateur')->group(function () {
+        Route::post('/accounts/{user}/block-parent', [\App\Http\Controllers\AdminAccountController::class, 'blockParent'])
+            ->name('accounts.blockParent');
+        Route::post('/accounts/{user}/block-student', [\App\Http\Controllers\AdminAccountController::class, 'blockStudent'])
+            ->name('accounts.blockStudent');
+        Route::post('/accounts/{user}/unblock', [\App\Http\Controllers\AdminAccountController::class, 'unblock'])
+            ->name('accounts.unblock');
+        Route::delete('/students/{student}/expel', [\App\Http\Controllers\AdminAccountController::class, 'destroy'])
+            ->name('students.expel');
+    });
+
+    // ---------- Blocage / déblocage temporaire (enseignant) ----------
+    Route::middleware('role:enseignant')->group(function () {
+        Route::post('/students/{student}/teacher-block', [\App\Http\Controllers\TeacherAccountController::class, 'block'])
+            ->name('teacher.students.block');
+        Route::post('/students/{student}/teacher-unblock', [\App\Http\Controllers\TeacherAccountController::class, 'unblockTemporary'])
+            ->name('teacher.students.unblockTemporary');
+    });
+
+    // ---------- Blocage / déblocage pour paiement (comptable) ----------
+    Route::middleware('role:comptable')->group(function () {
+        Route::post('/accounts/{user}/accountant-block', [\App\Http\Controllers\AccountantAccountController::class, 'block'])
+            ->name('accountant.accounts.block');
+        Route::post('/accounts/{user}/unblock-missed-payments', [\App\Http\Controllers\AccountantAccountController::class, 'unblockAfterMissedPayments'])
+            ->name('accountant.accounts.unblockMissedPayments');
+        Route::post('/accounts/{user}/unblock-late-payment', [\App\Http\Controllers\AccountantAccountController::class, 'unblockAfterLatePayment'])
+            ->name('accountant.accounts.unblockLatePayment');
+    });
+
     // ---------- Module Cours (gestion admin/enseignant) ----------
     Route::middleware('role:administrateur,enseignant')->group(function () {
         Route::resource('courses', \App\Http\Controllers\CourseController::class)
