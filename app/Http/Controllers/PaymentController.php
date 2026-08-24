@@ -38,7 +38,7 @@ class PaymentController extends Controller
             'recorded_by' => auth()->id(),
         ]);
 
-        $this->applyToInvoiceAndAccounts($student, $payment);
+        $this->applyToInvoice($student, $payment);
         $this->sendPaymentNotifications($student, $payment, $validated['payer_role']);
 
         return redirect()
@@ -47,11 +47,11 @@ class PaymentController extends Controller
     }
 
     /**
-     * Lie le paiement à la facture en attente la plus ancienne, réinitialise
-     * le compteur d'impayés, et débloque immédiatement un compte suspendu
-     * pour retard de paiement lié à cet élève.
+     * Lie le paiement à la facture en attente la plus ancienne et réinitialise
+     * le compteur d'impayés consécutifs. Ne débloque PAS un compte suspendu :
+     * le déblocage reste une action manuelle du comptable.
      */
-    private function applyToInvoiceAndAccounts(Student $student, Payment $payment): void
+    private function applyToInvoice(Student $student, Payment $payment): void
     {
         $invoice = $student->invoices()
             ->whereIn('status', ['pending', 'late'])
@@ -66,16 +66,6 @@ class PaymentController extends Controller
         }
 
         $student->update(['consecutive_missed_payments' => 0]);
-
-        foreach (collect([$student->user, $student->parentUser])->filter() as $account) {
-            if ($account->account_status === 'suspended') {
-                $account->update([
-                    'account_status'  => 'active',
-                    'suspended_until' => null,
-                    'blocked_reason'  => null,
-                ]);
-            }
-        }
     }
 
     /**
