@@ -27,7 +27,7 @@ class StudentCourseController extends Controller
         abort_if(! $student, 404, "Aucun élève associé à ce compte.");
 
         $courses = Course::query()
-            ->where('class_name', $student->class_name)
+            ->where('class_name', $student->current_class)
             ->with('teacher')
             ->orderBy('subject')
             ->get();
@@ -54,7 +54,7 @@ class StudentCourseController extends Controller
         abort_if(! $student, 404, "Aucun élève associé à ce compte.");
 
         // Un élève/parent ne peut voir que les cours de sa propre classe
-        abort_unless($course->class_name === $student->class_name, 403,
+        abort_unless($course->class_name === $student->current_class, 403,
             "Ce cours n'appartient pas à votre classe.");
 
         $course->load('teacher', 'resources');
