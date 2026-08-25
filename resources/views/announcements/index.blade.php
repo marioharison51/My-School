@@ -43,7 +43,7 @@
                         </div>
                         <p class="mt-2 text-gray-700">{{ $announcement->body }}</p>
                         <p class="mt-2 text-xs text-gray-400">
-                            Publié par {{ $announcement->creator->name }} le {{ $announcement->created_at->format('d/m/Y') }}
+                            Publié par {{ $announcement->creator->name ?? 'un compte supprimé' }} le {{ $announcement->created_at->format('d/m/Y') }}
                         </p>
                     </div>
                 @empty
