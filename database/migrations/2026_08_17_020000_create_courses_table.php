@@ -11,15 +11,18 @@ return new class extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
 
-            $table->string('title');          // Nom du cours
-            $table->string('subject');        // Matière
-            $table->string('class_name');     // Classe à laquelle le cours est attribué
+            $table->string('title');
+            $table->string('subject');
+            $table->string('class_name');
             $table->text('description')->nullable();
 
-            // Enseignant qui a créé / donne le cours
+            // Enseignant qui a créé / donne le cours.
+            // Nullable : si le compte enseignant est supprimé, le cours reste
+            // (un autre enseignant peut le reprendre) au lieu de disparaître.
             $table->foreignId('teacher_id')
+                  ->nullable()
                   ->constrained('users')
-                  ->cascadeOnDelete();
+                  ->nullOnDelete();
 
             $table->timestamps();
         });
