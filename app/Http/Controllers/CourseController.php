@@ -3,15 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
-    /**
-     * Liste des cours.
-     * - admin : voit tous les cours, filtrable par classe et par enseignant
-     * - enseignant : ne voit que ses propres cours
-     */
     public function index(Request $request)
     {
         $query = Course::query()->with('teacher')->orderBy('class_name')->orderBy('subject');
@@ -38,14 +34,15 @@ class CourseController extends Controller
     public function create()
     {
         $course = new Course();
-        return view('courses.create', compact('course'));
+        $teachers = $this->teachersForSelect();
+
+        return view('courses.create', compact('course', 'teachers'));
     }
 
     public function store(Request $request)
     {
         $validated = $this->validateCourse($request);
 
-        // Un enseignant ne peut créer un cours qu'en son propre nom
         if ($request->user()->role === 'enseignant') {
             $validated['teacher_id'] = $request->user()->id;
         }
@@ -60,7 +57,9 @@ class CourseController extends Controller
     {
         $this->authorizeAccess($course);
 
-        return view('courses.edit', compact('course'));
+        $teachers = $this->teachersForSelect();
+
+        return view('courses.edit', compact('course', 'teachers'));
     }
 
     public function update(Request $request, Course $course)
@@ -89,9 +88,6 @@ class CourseController extends Controller
             ->with('status', 'Cours supprimé.');
     }
 
-    /**
-     * Empêche un enseignant de modifier/supprimer le cours d'un collègue.
-     */
     private function authorizeAccess(Course $course): void
     {
         $user = auth()->user();
@@ -103,11 +99,25 @@ class CourseController extends Controller
 
     private function validateCourse(Request $request): array
     {
-        return $request->validate([
+        $rules = [
             'title'       => ['required', 'string', 'max:255'],
             'subject'     => ['required', 'string', 'max:255'],
             'class_name'  => ['required', 'string', 'max:100'],
             'description' => ['nullable', 'string', 'max:2000'],
-        ]);
+        ];
+
+        if ($request->user()->role === 'administrateur') {
+            $rules['teacher_id'] = ['nullable', 'exists:users,id'];
+        }
+
+        return $request->validate($rules);
+    }
+
+    private function teachersForSelect()
+    {
+        return User::query()
+            ->where('role', 'enseignant')
+            ->orderBy('name')
+            ->get();
     }
 }
