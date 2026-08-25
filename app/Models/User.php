@@ -19,6 +19,7 @@ use Illuminate\Notifications\Notifiable;
     'account_status',
     'suspended_until',
     'blocked_reason',
+    'blocked_category',
     'exam_dates_hidden',
     'requires_password_reset',
 ])]
@@ -28,11 +29,6 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable, SoftDeletes;
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [

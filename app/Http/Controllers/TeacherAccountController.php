@@ -38,7 +38,7 @@ class TeacherAccountController extends Controller
     {
         abort_unless($student->user, 404, "Cet élève n'a pas encore de compte utilisateur.");
 
-        $this->blocking->unblockTemporary($student->user);
+        $this->blocking->unblockTemporarily($student->user);
 
         return back()->with('status', "Compte débloqué temporairement. L'élève doit se rapprocher de la direction pour retrouver l'accès complet.");
     }
