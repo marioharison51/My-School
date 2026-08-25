@@ -10,7 +10,9 @@ return new class extends Migration
     {
         Schema::create('announcements', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('created_by')->constrained('users')->cascadeOnDelete();
+            // Qui a créé l'annonce. Nullable : l'historique des annonces
+            // reste consultable même si le compte admin d'origine est supprimé.
+            $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
             $table->string('title');
             $table->text('body');
             $table->date('event_date')->nullable();
