@@ -20,6 +20,22 @@ class UserManagementController extends Controller
             'role' => ['required', 'in:administrateur,enseignant,eleve,parent,comptable'],
         ]);
 
+        if ($user->id === auth()->id()) {
+            return redirect()
+                ->route('admin.users.index')
+                ->with('error', "Vous ne pouvez pas modifier votre propre rôle.");
+        }
+
+        $isLastAdmin = $user->role === 'administrateur'
+            && $validated['role'] !== 'administrateur'
+            && User::where('role', 'administrateur')->count() <= 1;
+
+        if ($isLastAdmin) {
+            return redirect()
+                ->route('admin.users.index')
+                ->with('error', "Impossible de retirer le rôle administrateur : c'est le dernier compte administrateur du système.");
+        }
+
         $user->update($validated);
 
         return redirect()
