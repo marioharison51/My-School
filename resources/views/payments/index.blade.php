@@ -43,7 +43,7 @@
                                 <td class="py-2">{{ number_format($payment->amount, 2) }} Ar</td>
                                 <td class="py-2">{{ $payment->method }}</td>
                                 <td class="py-2">{{ $payment->reference ?? '—' }}</td>
-                                <td class="py-2">{{ $payment->recordedBy->name }}</td>
+                                <td class="py-2">{{ $payment->recordedBy->name ?? '—' }}</td>
                                 <td class="py-2">
                                     <a href="{{ route('payments.receipt', [$student, $payment]) }}" target="_blank" class="text-primary-700">
                                         Reçu PDF
