@@ -1,0 +1,23 @@
+{
+    "name": "My-School (Laravel 13 / PHP 8.4)",
+    "image": "mcr.microsoft.com/devcontainers/php:8.4",
+    "features": {
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "22"
+        }
+    },
+    "forwardPorts": [8000, 5173],
+    "portsAttributes": {
+        "8000": { "label": "Laravel (php artisan serve)" },
+        "5173": { "label": "Vite dev server" }
+    },
+    "postCreateCommand": "composer install && npm install && cp -n .env.example .env && php artisan key:generate && touch database/database.sqlite && php artisan migrate --force",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "bmewburn.vscode-intelephense-client",
+                "onecentlin.laravel-blade"
+            ]
+        }
+    }
+}
