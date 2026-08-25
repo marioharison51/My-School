@@ -72,7 +72,13 @@ Route::middleware('auth')->group(function () {
 
     // ---------- Module Élèves ----------
     Route::middleware('role:administrateur,enseignant')->group(function () {
-        Route::resource('students', \App\Http\Controllers\StudentController::class);
+        Route::resource('students', \App\Http\Controllers\StudentController::class)
+            ->except(['destroy']);
+    });
+
+    Route::middleware('role:administrateur')->group(function () {
+        Route::delete('/students/{student}', [\App\Http\Controllers\StudentController::class, 'destroy'])
+            ->name('students.destroy');
     });
 
     // ---------- Module Paiements ----------
