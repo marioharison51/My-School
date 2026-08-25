@@ -12,13 +12,16 @@ class AccountBlockingService
 
     /**
      * Bloque un compte de façon indéfinie (jusqu'à déblocage manuel).
+     *
+     * @param string $category 'general' (débloquable par l'admin) ou 'payment' (réservé au comptable).
      */
-    public function block(User $user, string $reason): void
+    public function block(User $user, string $reason, string $category = 'general'): void
     {
         $user->update([
             'account_status' => 'blocked',
             'suspended_until' => null,
             'blocked_reason' => $reason,
+            'blocked_category' => $category,
         ]);
     }
 
@@ -33,6 +36,7 @@ class AccountBlockingService
             'account_status' => 'active',
             'suspended_until' => null,
             'blocked_reason' => null,
+            'blocked_category' => null,
             'requires_password_reset' => false,
             'password' => $newPassword,
         ]);
@@ -52,6 +56,7 @@ class AccountBlockingService
         $user->update([
             'account_status' => 'active',
             'blocked_reason' => null,
+            'blocked_category' => null,
             'requires_password_reset' => true,
         ]);
     }
