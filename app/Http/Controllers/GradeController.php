@@ -46,8 +46,19 @@ class GradeController extends Controller
             'comments.*'        => ['nullable', 'string', 'max:255'],
         ]);
 
+        // Élèves réellement inscrits dans la classe concernée par cet examen —
+        // toute note soumise pour un élève hors de ce périmètre est ignorée.
+        $allowedStudentIds = Student::query()
+            ->where('current_class', $exam->course->class_name)
+            ->pluck('id')
+            ->all();
+
         foreach ($validated['scores'] as $studentId => $score) {
             if ($score === null || $score === '') {
+                continue;
+            }
+
+            if (! in_array((int) $studentId, $allowedStudentIds, true)) {
                 continue;
             }
 
