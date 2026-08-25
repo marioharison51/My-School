@@ -35,7 +35,7 @@
                             <tr class="border-b hover:bg-gray-50">
                                 <td class="py-2 px-4">
                                     <a href="{{ route('messages.show', $message) }}" class="text-primary-700">
-                                        {{ $message->sender->name }}
+                                        {{ $message->sender->name ?? 'Compte supprimé' }}
                                     </a>
                                 </td>
                                 <td class="py-2 px-4">{{ $message->subject }}</td>
