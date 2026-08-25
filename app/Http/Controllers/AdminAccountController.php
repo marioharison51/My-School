@@ -50,7 +50,7 @@ class AdminAccountController extends Controller
     public function unblock(User $user)
     {
         abort_if(
-            $user->blocked_reason && str_contains($user->blocked_reason, 'paiement'),
+            $user->blocked_category === 'payment',
             403,
             "Ce compte est bloqué pour un motif de paiement — le déblocage doit passer par le comptable."
         );
