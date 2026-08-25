@@ -14,7 +14,7 @@ class AccountantAccountController extends Controller
 
     public function block(Request $request, User $user)
     {
-        $this->blocking->block($user, 'Blocage manuel pour non-paiement / retard de paiement.');
+        $this->blocking->block($user, 'Blocage manuel pour non-paiement / retard de paiement.', 'payment');
 
         return back()->with('status', 'Compte bloqué pour retard/non-paiement.');
     }
