@@ -43,7 +43,7 @@
         @endif
         <tr>
             <th>Enregistré par</th>
-            <td>{{ $payment->recordedBy->name }}</td>
+            <td>{{ $payment->recordedBy->name ?? '—' }}</td>
         </tr>
     </table>
 
