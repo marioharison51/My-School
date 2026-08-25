@@ -11,10 +11,10 @@
 
                 <div class="mb-4 pb-4 border-b">
                     <p class="text-sm text-gray-500">
-                        De : <span class="font-medium text-gray-900">{{ $message->sender->name }}</span>
+                        De : <span class="font-medium text-gray-900">{{ $message->sender->name ?? 'Compte supprimé' }}</span>
                     </p>
                     <p class="text-sm text-gray-500">
-                        À : <span class="font-medium text-gray-900">{{ $message->recipient->name }}</span>
+                        À : <span class="font-medium text-gray-900">{{ $message->recipient->name ?? 'Compte supprimé' }}</span>
                     </p>
                     <p class="text-sm text-gray-500">
                         {{ $message->created_at->format('d/m/Y à H:i') }}
