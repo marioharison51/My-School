@@ -12,7 +12,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('student_id')->constrained()->cascadeOnDelete();
             $table->decimal('monthly_amount', 12, 2);
-            $table->foreignId('set_by')->constrained('users')->cascadeOnDelete();
+            // Qui a fixé ce montant. Nullable : conserve l'historique même si
+            // le compte admin d'origine est supprimé.
+            $table->foreignId('set_by')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
         });
     }
