@@ -6,24 +6,40 @@
             <div class="bg-white shadow-sm rounded-lg p-5 border border-gray-100">
                 <div class="flex items-center justify-between">
                     <div class="text-sm text-gray-500">Élèves inscrits</div>
-                    <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-primary-50 text-primary-700">Actifs</span>
+                    <x-status-badge color="primary">Actifs</x-status-badge>
                 </div>
                 <div class="text-3xl font-bold text-gray-900 mt-2">{{ $totalStudents }}</div>
             </div>
             <div class="bg-white shadow-sm rounded-lg p-5 border border-gray-100">
                 <div class="flex items-center justify-between">
                     <div class="text-sm text-gray-500">Enseignants</div>
-                    <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-primary-50 text-primary-700">Équipe</span>
+                    <x-status-badge color="primary">Équipe</x-status-badge>
                 </div>
                 <div class="text-3xl font-bold text-gray-900 mt-2">{{ $totalTeachers }}</div>
             </div>
             <div class="bg-white shadow-sm rounded-lg p-5 border border-gray-100">
                 <div class="flex items-center justify-between">
                     <div class="text-sm text-gray-500">Total encaissé</div>
-                    <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-green-50 text-green-700">Finances</span>
+                    <x-status-badge color="green">Finances</x-status-badge>
                 </div>
                 <div class="text-3xl font-bold text-gray-900 mt-2">{{ number_format($totalPayments, 2) }} Ar</div>
             </div>
+            <a href="{{ route('invoices.students', ['status' => 'late']) }}"
+               class="bg-white shadow-sm rounded-lg p-5 border border-gray-100 hover:border-red-200 transition">
+                <div class="flex items-center justify-between">
+                    <div class="text-sm text-gray-500">Élèves en retard</div>
+                    <x-status-badge color="red">Alerte</x-status-badge>
+                </div>
+                <div class="text-3xl font-bold text-gray-900 mt-2">{{ $studentsLate }}</div>
+            </a>
+            <a href="{{ route('invoices.index', ['status' => 'pending']) }}"
+               class="bg-white shadow-sm rounded-lg p-5 border border-gray-100 hover:border-amber-200 transition">
+                <div class="flex items-center justify-between">
+                    <div class="text-sm text-gray-500">Factures en attente</div>
+                    <x-status-badge color="amber">À suivre</x-status-badge>
+                </div>
+                <div class="text-3xl font-bold text-gray-900 mt-2">{{ $invoicesPending }}</div>
+            </a>
         </div>
 
         <div class="bg-white shadow-sm rounded-lg border border-gray-100">
