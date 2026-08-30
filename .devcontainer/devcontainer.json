@@ -11,7 +11,7 @@
         "8000": { "label": "Laravel (php artisan serve)" },
         "5173": { "label": "Vite dev server" }
     },
-    "postCreateCommand": "composer install && npm install && cp -n .env.example .env && php artisan key:generate && touch database/database.sqlite && php artisan migrate --force",
+    "postCreateCommand": "bash .devcontainer/setup.sh",
     "customizations": {
         "vscode": {
             "extensions": [

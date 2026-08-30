@@ -2,6 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 
+// ---------- Assistant d'installation (premier lancement uniquement) ----------
+Route::middleware('install.guard')->prefix('install')->name('install.')->group(function () {
+    Route::get('/', [\App\Http\Controllers\InstallController::class, 'welcome'])->name('welcome');
+    Route::post('/', [\App\Http\Controllers\InstallController::class, 'saveWelcome'])->name('welcome.save');
+
+    Route::get('/database', [\App\Http\Controllers\InstallController::class, 'database'])->name('database');
+    Route::post('/database', [\App\Http\Controllers\InstallController::class, 'saveDatabase'])->name('database.save');
+
+    Route::get('/admin', [\App\Http\Controllers\InstallController::class, 'admin'])->name('admin');
+    Route::post('/admin', [\App\Http\Controllers\InstallController::class, 'saveAdmin'])->name('admin.save');
+
+    Route::get('/finish', [\App\Http\Controllers\InstallController::class, 'finish'])->name('finish');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });

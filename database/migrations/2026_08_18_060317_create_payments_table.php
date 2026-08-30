@@ -11,7 +11,9 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('recorded_by')->constrained('users')->cascadeOnDelete();
+            // Qui a enregistré le paiement. Nullable : si ce compte est un jour
+            // supprimé, l'historique de paiement (donnée financière) est conservé.
+            $table->foreignId('recorded_by')->nullable()->constrained('users')->nullOnDelete();
             $table->decimal('amount', 12, 2);
             $table->enum('method', ['mvola', 'orange_money', 'airtel_money', 'virement', 'especes']);
             $table->string('reference')->nullable();

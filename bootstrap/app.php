@@ -17,6 +17,11 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'role' => \App\Http\Middleware\RoleMiddleware::class,
             'exam.block' => \App\Http\Middleware\BlockCoursesDuringExams::class,
+            'install.guard' => \App\Http\Middleware\RedirectIfInstalled::class,
+        ]);
+
+        $middleware->web(append: [
+            \App\Http\Middleware\RedirectIfNotInstalled::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

@@ -60,7 +60,7 @@
                                 <td class="py-2">{{ number_format($payment->amount, 2) }} Ar</td>
                                 <td class="py-2">{{ $payment->method }}</td>
                                 <td class="py-2">{{ $payment->paid_at->format('d/m/Y') }}</td>
-                                <td class="py-2">{{ $payment->recordedBy->name }}</td>
+                                <td class="py-2">{{ $payment->recordedBy->name ?? '—' }}</td>
                             </tr>
                         @empty
                             <tr><td colspan="5" class="py-4 text-gray-500">Aucune transaction récente.</td></tr>
