@@ -1,8 +1,15 @@
 <x-install-layout :step="3">
     <h1 class="text-xl font-bold text-gray-900 mb-2">Compte administrateur</h1>
+
     <p class="text-gray-500 text-sm mb-6">
         Créez le tout premier compte administrateur de l'établissement.
     </p>
+
+    @if (session('error'))
+        <div class="mb-4 p-3 bg-red-100 text-red-800 rounded text-sm">
+            {{ session('error') }}
+        </div>
+    @endif
 
     @if ($errors->any())
         <div class="mb-4 p-3 bg-red-100 text-red-800 rounded text-sm">
