@@ -12,6 +12,14 @@
         </div>
     @endif
 
+    @if (! str_starts_with($detectedUrl, 'https://'))
+        <div class="mb-4 p-3 bg-yellow-100 text-yellow-800 rounded text-sm">
+            ⚠️ Ce site n'est pas encore accédé en HTTPS sécurisé. Les mots de passe et
+            données saisis ne seront pas chiffrés en transit. Configurez un certificat
+            SSL (via votre hébergeur ou Let's Encrypt) avant une mise en production réelle.
+        </div>
+    @endif
+
     <form method="POST" action="{{ route('install.welcome.save') }}" class="space-y-5">
         @csrf
 
