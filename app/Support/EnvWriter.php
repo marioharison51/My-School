@@ -6,10 +6,6 @@ use Illuminate\Support\Facades\File;
 
 class EnvWriter
 {
-    /**
-     * Met à jour (ou ajoute si absente) une clé dans le fichier .env,
-     * sans toucher au reste du fichier.
-     */
     public static function set(string $key, string $value): void
     {
         $path = base_path('.env');
@@ -24,7 +20,7 @@ class EnvWriter
         $pattern = '/^'.preg_quote($key, '/').'=.*/m';
 
         if (preg_match($pattern, $content)) {
-            $content = preg_replace($pattern, "{$key}={$escaped}", $content);
+            $content = preg_replace_callback($pattern, fn () => "{$key}={$escaped}", $content);
         } else {
             $content .= "\n{$key}={$escaped}\n";
         }
