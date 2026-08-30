@@ -39,6 +39,8 @@ class InstallController extends Controller
 
     public function database()
     {
+        $this->ensureSqliteFileExists();
+
         $hasExistingData = $this->databaseHasData();
 
         return view('install.database', compact('hasExistingData'));
@@ -49,6 +51,8 @@ class InstallController extends Controller
         $validated = $request->validate([
             'choice' => ['required', 'in:keep,fresh'],
         ]);
+
+        $this->ensureSqliteFileExists();
 
         if ($validated['choice'] === 'fresh') {
             Artisan::call('migrate:fresh', ['--force' => true]);
@@ -88,6 +92,11 @@ class InstallController extends Controller
 
     public function finish()
     {
+        if (! User::where('role', 'administrateur')->exists()) {
+            return redirect()->route('install.admin')
+                ->with('error', "Vous devez d'abord créer un compte administrateur.");
+        }
+
         $installData = session('install', []);
 
         if (! empty($installData['app_name'])) {
@@ -113,6 +122,20 @@ class InstallController extends Controller
             return Schema::hasTable('users') && User::query()->exists();
         } catch (\Throwable) {
             return false;
+        }
+    }
+
+    private function ensureSqliteFileExists(): void
+    {
+        if (config('database.default') !== 'sqlite') {
+            return;
+        }
+
+        $path = config('database.connections.sqlite.database');
+
+        if ($path && ! file_exists($path)) {
+            @mkdir(dirname($path), 0755, true);
+            touch($path);
         }
     }
 }
