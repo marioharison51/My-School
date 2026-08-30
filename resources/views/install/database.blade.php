@@ -1,6 +1,12 @@
 <x-install-layout :step="2">
     <h1 class="text-xl font-bold text-gray-900 mb-2">Base de données</h1>
 
+    @if (session('error'))
+        <div class="mb-4 p-3 bg-red-100 text-red-800 rounded text-sm break-words">
+            {{ session('error') }}
+        </div>
+    @endif
+
     @if ($hasExistingData)
         <p class="text-gray-500 text-sm mb-6">
             Une installation existante avec des données a été détectée. Que souhaitez-vous faire ?
