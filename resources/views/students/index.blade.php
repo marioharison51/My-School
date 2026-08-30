@@ -1,13 +1,6 @@
-                    <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Liste des élèves
-        </h2>
-    </x-slot>
+<x-sidebar-layout title="Liste des élèves">
 
-    <div class="py-12">
-        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-
+    <div>
             @if (session('status'))
                 <div class="mb-4 p-3 bg-green-100 text-green-800 rounded-md">
                     {{ session('status') }}
@@ -75,7 +68,6 @@
                 </div>
 
             </div>
-        </div>
     </div>
-</x-app-layout>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               </x-app-layout>
+
+</x-sidebar-layout>
