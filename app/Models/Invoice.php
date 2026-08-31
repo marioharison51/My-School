@@ -31,4 +31,22 @@ class Invoice extends Model
     {
         return $this->belongsTo(Payment::class);
     }
+
+    public function statusLabel(): string
+    {
+        return match ($this->status) {
+            'paid' => 'Payée',
+            'late' => 'En retard',
+            default => 'En attente',
+        };
+    }
+
+    public function statusColor(): string
+    {
+        return match ($this->status) {
+            'paid' => 'green',
+            'late' => 'red',
+            default => 'amber',
+        };
+    }
 }
