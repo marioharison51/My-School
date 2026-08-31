@@ -16,7 +16,7 @@
 
         <div class="flex justify-end">
             <a href="{{ route('admin.users.create') }}"
-               class="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm">
+               class="px-4 py-2 bg-primary-700 hover:bg-primary-600 text-white rounded-md text-sm">
                 + Créer un utilisateur
             </a>
         </div>
