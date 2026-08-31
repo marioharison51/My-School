@@ -23,7 +23,7 @@
                     </form>
 
                     <a href="{{ route('students.create') }}"
-                       class="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm">
+                       class="px-4 py-2 bg-primary-700 hover:bg-primary-600 text-white rounded-md text-sm">
                         + Inscrire un élève
                     </a>
                 </div>
@@ -46,7 +46,7 @@
                                 <td class="py-2 pr-4">{{ $student->current_class }}</td>
                                 <td class="py-2 pr-4">{{ $student->parent_phone }}</td>
                                 <td class="py-2 pr-4 flex gap-3">
-                                    <a href="{{ route('students.edit', $student) }}" class="text-indigo-600">Modifier</a>
+                                    <a href="{{ route('students.edit', $student) }}" class="text-primary-700">Modifier</a>
                                     <form method="POST" action="{{ route('students.destroy', $student) }}"
                                           onsubmit="return confirm('Supprimer cet élève ?');">
                                         @csrf
