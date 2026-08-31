@@ -1,13 +1,6 @@
-                    <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Liste des élèves
-        </h2>
-    </x-slot>
+<x-sidebar-layout title="Liste des élèves">
 
-    <div class="py-12">
-        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-
+    <div>
             @if (session('status'))
                 <div class="mb-4 p-3 bg-green-100 text-green-800 rounded-md">
                     {{ session('status') }}
@@ -30,7 +23,7 @@
                     </form>
 
                     <a href="{{ route('students.create') }}"
-                       class="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm">
+                       class="px-4 py-2 bg-primary-700 hover:bg-primary-600 text-white rounded-md text-sm">
                         + Inscrire un élève
                     </a>
                 </div>
@@ -53,7 +46,7 @@
                                 <td class="py-2 pr-4">{{ $student->current_class }}</td>
                                 <td class="py-2 pr-4">{{ $student->parent_phone }}</td>
                                 <td class="py-2 pr-4 flex gap-3">
-                                    <a href="{{ route('students.edit', $student) }}" class="text-indigo-600">Modifier</a>
+                                    <a href="{{ route('students.edit', $student) }}" class="text-primary-700">Modifier</a>
                                     <form method="POST" action="{{ route('students.destroy', $student) }}"
                                           onsubmit="return confirm('Supprimer cet élève ?');">
                                         @csrf
@@ -75,7 +68,11 @@
                 </div>
 
             </div>
-        </div>
     </div>
+<<<<<<< HEAD
 </x-app-layout>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+=======
+
+</x-sidebar-layout>
+>>>>>>> 5b2591bd61925369941af708f9aa539911d4abe9
