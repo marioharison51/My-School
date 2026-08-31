@@ -34,12 +34,18 @@ Route::middleware('auth')->group(function () {
             $totalTeachers = \App\Models\User::where('role', 'enseignant')->count();
             $totalPayments = \App\Models\Payment::sum('amount');
             $recentPayments = \App\Models\Payment::with('student')->latest('paid_at')->limit(5)->get();
+            $studentsLate = \App\Models\Invoice::where('status', 'late')->select('student_id')->distinct()->count('student_id');
+            $invoicesPending = \App\Models\Invoice::where('status', 'pending')->count();
 
-            return view('dashboards.admin', compact('totalStudents', 'totalTeachers', 'totalPayments', 'recentPayments'));
+            return view('dashboards.admin', compact('totalStudents', 'totalTeachers', 'totalPayments', 'recentPayments', 'studentsLate', 'invoicesPending'));
         })->name('admin.dashboard');
 
         Route::get('/admin/users', [\App\Http\Controllers\UserManagementController::class, 'index'])
             ->name('admin.users.index');
+        Route::get('/admin/users/create', [\App\Http\Controllers\UserManagementController::class, 'create'])
+            ->name('admin.users.create');
+        Route::post('/admin/users', [\App\Http\Controllers\UserManagementController::class, 'store'])
+            ->name('admin.users.store');
         Route::patch('/admin/users/{user}/role', [\App\Http\Controllers\UserManagementController::class, 'updateRole'])
             ->name('admin.users.updateRole');
     });
