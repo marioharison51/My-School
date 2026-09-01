@@ -8,10 +8,39 @@
             ['label' => 'Cours', 'route' => 'courses.index', 'active' => 'courses.*', 'icon' => 'book'],
             ['label' => 'Examens', 'route' => 'exams.index', 'active' => 'exams.*|grades.*', 'icon' => 'clipboard'],
             ['label' => 'Bulletins', 'route' => 'bulletins.select', 'active' => 'bulletins.*', 'icon' => 'document'],
+            ['label' => 'Retards', 'route' => 'tardiness.index', 'active' => 'tardiness.*', 'icon' => 'clock'],
             ['label' => 'Factures', 'route' => 'invoices.index', 'active' => 'invoices.*', 'icon' => 'receipt'],
             ['label' => 'Annonces', 'route' => 'announcements.index', 'active' => 'announcements.*', 'icon' => 'megaphone'],
             ['label' => 'Messages', 'route' => 'messages.index', 'active' => 'messages.*', 'icon' => 'mail'],
             ['label' => 'Utilisateurs', 'route' => 'admin.users.index', 'active' => 'admin.users.*', 'icon' => 'user-cog'],
+        ],
+        'enseignant' => [
+            ['label' => 'Tableau de bord', 'route' => 'enseignant.dashboard', 'active' => 'enseignant.dashboard', 'icon' => 'grid'],
+            ['label' => 'Élèves', 'route' => 'students.index', 'active' => 'students.*', 'icon' => 'users'],
+            ['label' => 'Cours', 'route' => 'courses.index', 'active' => 'courses.*', 'icon' => 'book'],
+            ['label' => 'Examens', 'route' => 'exams.index', 'active' => 'exams.*|grades.*', 'icon' => 'clipboard'],
+            ['label' => 'Bulletins', 'route' => 'bulletins.select', 'active' => 'bulletins.*', 'icon' => 'document'],
+            ['label' => 'Retards', 'route' => 'tardiness.index', 'active' => 'tardiness.*', 'icon' => 'clock'],
+            ['label' => 'Annonces', 'route' => 'announcements.index', 'active' => 'announcements.*', 'icon' => 'megaphone'],
+            ['label' => 'Messages', 'route' => 'messages.index', 'active' => 'messages.*', 'icon' => 'mail'],
+        ],
+        'eleve' => [
+            ['label' => 'Tableau de bord', 'route' => 'eleve.dashboard', 'active' => 'eleve.dashboard', 'icon' => 'grid'],
+            ['label' => 'Mes cours', 'route' => 'student.courses.index', 'active' => 'student.courses.*', 'icon' => 'book'],
+            ['label' => 'Annonces', 'route' => 'announcements.index', 'active' => 'announcements.*', 'icon' => 'megaphone'],
+            ['label' => 'Messages', 'route' => 'messages.index', 'active' => 'messages.*', 'icon' => 'mail'],
+        ],
+        'parent' => [
+            ['label' => 'Tableau de bord', 'route' => 'parent.dashboard', 'active' => 'parent.dashboard', 'icon' => 'grid'],
+            ['label' => 'Mes enfants', 'route' => 'parent.children.index', 'active' => 'parent.children.*', 'icon' => 'users'],
+            ['label' => 'Annonces', 'route' => 'announcements.index', 'active' => 'announcements.*', 'icon' => 'megaphone'],
+            ['label' => 'Messages', 'route' => 'messages.index', 'active' => 'messages.*', 'icon' => 'mail'],
+        ],
+        'comptable' => [
+            ['label' => 'Tableau de bord', 'route' => 'comptable.dashboard', 'active' => 'comptable.dashboard', 'icon' => 'grid'],
+            ['label' => 'Élèves', 'route' => 'invoices.students', 'active' => 'invoices.students', 'icon' => 'users'],
+            ['label' => 'Factures / Paiements', 'route' => 'invoices.index', 'active' => 'invoices.index|invoices.student', 'icon' => 'receipt'],
+            ['label' => 'Messages', 'route' => 'messages.index', 'active' => 'messages.*', 'icon' => 'mail'],
         ],
         default => [
             ['label' => 'Tableau de bord', 'route' => 'dashboard', 'active' => 'dashboard', 'icon' => 'grid'],
@@ -29,6 +58,7 @@
         'megaphone' => 'M3 10v4h3l6 4V6L6 10H3zM16 8c1 1 1 7 0 8',
         'mail' => 'M4 6h16v12H4V6zm0 0l8 6 8-6',
         'user-cog' => 'M9 11a3 3 0 100-6 3 3 0 000 6zM4 20c0-3 2.5-5.5 5.5-5.5S15 17 15 20M18 13v1.5M18 18.5V20M15.3 14.3l1 1M20.7 17.7l1 1M15.3 19.7l1-1M20.7 15.3l1-1',
+        'clock' => 'M12 8v4l3 3M20 12a8 8 0 11-16 0 8 8 0 0116 0z',
     ];
 @endphp
 
