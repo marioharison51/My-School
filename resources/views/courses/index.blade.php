@@ -30,7 +30,7 @@
                     </form>
 
                     <a href="{{ route('courses.create') }}"
-                       class="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm">
+                       class="px-4 py-2 bg-primary-700 hover:bg-primary-600 text-white rounded-md text-sm">
                         + Créer un cours
                     </a>
                 </div>
@@ -53,7 +53,7 @@
                                 <td class="py-2 pr-4">{{ $course->class_name }}</td>
                                 <td class="py-2 pr-4">{{ $course->teacher->name ?? '—' }}</td>
                                 <td class="py-2 pr-4 flex gap-3">
-                                    <a href="{{ route('courses.edit', $course) }}" class="text-indigo-600">Modifier</a>
+                                    <a href="{{ route('courses.edit', $course) }}" class="text-primary-700">Modifier</a>
                                     <form method="POST" action="{{ route('courses.destroy', $course) }}"
                                           onsubmit="return confirm('Supprimer ce cours ?');">
                                         @csrf
