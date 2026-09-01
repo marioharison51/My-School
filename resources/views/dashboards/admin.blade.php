@@ -24,13 +24,21 @@
                 </div>
                 <div class="text-3xl font-bold text-gray-900 mt-2">{{ number_format($totalPayments, 2) }} Ar</div>
             </div>
-            <a href="{{ route('invoices.index', ['status' => 'late']) }}"
+            <a href="{{ route('invoices.students', ['status' => 'late']) }}"
                class="bg-white shadow-sm rounded-lg p-5 border border-gray-100 hover:border-red-200 transition">
                 <div class="flex items-center justify-between">
-                    <div class="text-sm text-gray-500">Élèves en retard</div>
+                    <div class="text-sm text-gray-500">Retard de paiement</div>
                     <x-status-badge color="red">Alerte</x-status-badge>
                 </div>
-                <div class="text-3xl font-bold text-gray-900 mt-2">{{ $studentsLate }}</div>
+                <div class="text-3xl font-bold text-gray-900 mt-2">{{ $studentsLatePayment }}</div>
+            </a>
+            <a href="{{ route('tardiness.index') }}"
+               class="bg-white shadow-sm rounded-lg p-5 border border-gray-100 hover:border-amber-200 transition">
+                <div class="flex items-center justify-between">
+                    <div class="text-sm text-gray-500">Retard d'assiduité</div>
+                    <x-status-badge color="amber">À suivre</x-status-badge>
+                </div>
+                <div class="text-3xl font-bold text-gray-900 mt-2">{{ $studentsLateAttendance }}</div>
             </a>
             <a href="{{ route('invoices.index', ['status' => 'pending']) }}"
                class="bg-white shadow-sm rounded-lg p-5 border border-gray-100 hover:border-amber-200 transition">
