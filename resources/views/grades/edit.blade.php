@@ -46,7 +46,7 @@
                     </table>
 
                     <div class="mt-6 flex items-center gap-3">
-                        <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md">
+                        <button type="submit" class="px-4 py-2 bg-primary-700 hover:bg-primary-600 text-white rounded-md">
                             Enregistrer les notes
                         </button>
                         <a href="{{ route('exams.index') }}" class="text-gray-600">Retour</a>
