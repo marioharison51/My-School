@@ -31,7 +31,7 @@
                     </div>
 
                     <div class="flex items-center gap-4">
-                        <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-md">
+                        <button type="submit" class="bg-primary-700 hover:bg-primary-600 text-white px-4 py-2 rounded-md">
                             Enregistrer
                         </button>
                         <a href="{{ route('students.show', $student) }}" class="text-gray-600">
