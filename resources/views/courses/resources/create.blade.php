@@ -1,11 +1,5 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Nouvelle ressource — {{ $course->title }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
+<x-sidebar-layout title="Nouvelle ressource — {{ $course->title }}">
+<div class="py-12">
         <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
 
@@ -57,4 +51,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-sidebar-layout>
