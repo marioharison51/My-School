@@ -69,10 +69,5 @@
 
             </div>
     </div>
-<<<<<<< HEAD
-</x-app-layout>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-=======
 
 </x-sidebar-layout>
->>>>>>> 5b2591bd61925369941af708f9aa539911d4abe9
