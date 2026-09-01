@@ -34,10 +34,13 @@ Route::middleware('auth')->group(function () {
             $totalTeachers = \App\Models\User::where('role', 'enseignant')->count();
             $totalPayments = \App\Models\Payment::sum('amount');
             $recentPayments = \App\Models\Payment::with('student')->latest('paid_at')->limit(5)->get();
-            $studentsLate = \App\Models\Invoice::where('status', 'late')->select('student_id')->distinct()->count('student_id');
+            $studentsLatePayment = \App\Models\Student::where('consecutive_missed_payments', '>', 0)
+                ->orWhereHas('invoices', fn ($q) => $q->where('status', 'late'))
+                ->count();
             $invoicesPending = \App\Models\Invoice::where('status', 'pending')->count();
+            $studentsLateAttendance = \App\Models\TardinessRecord::select('student_id')->distinct()->count('student_id');
 
-            return view('dashboards.admin', compact('totalStudents', 'totalTeachers', 'totalPayments', 'recentPayments', 'studentsLate', 'invoicesPending'));
+            return view('dashboards.admin', compact('totalStudents', 'totalTeachers', 'totalPayments', 'recentPayments', 'studentsLatePayment', 'invoicesPending', 'studentsLateAttendance'));
         })->name('admin.dashboard');
 
         Route::get('/admin/users', [\App\Http\Controllers\UserManagementController::class, 'index'])
@@ -48,6 +51,14 @@ Route::middleware('auth')->group(function () {
             ->name('admin.users.store');
         Route::patch('/admin/users/{user}/role', [\App\Http\Controllers\UserManagementController::class, 'updateRole'])
             ->name('admin.users.updateRole');
+    });
+
+    // ---------- Retards d'assiduité ----------
+    Route::middleware('role:administrateur,enseignant')->group(function () {
+        Route::get('/tardiness', [\App\Http\Controllers\TardinessController::class, 'index'])
+            ->name('tardiness.index');
+        Route::post('/tardiness', [\App\Http\Controllers\TardinessController::class, 'store'])
+            ->name('tardiness.store');
     });
 
     Route::middleware('role:enseignant')->group(function () {
@@ -77,6 +88,14 @@ Route::middleware('auth')->group(function () {
 
             return view('dashboards.parent', compact('children'));
         })->name('parent.dashboard');
+
+        Route::get('/parent/enfants', function () {
+            $children = auth()->user()->children()->with(['payments' => function ($q) {
+                $q->latest('paid_at')->limit(5);
+            }])->get();
+
+            return view('parent.children.index', compact('children'));
+        })->name('parent.children.index');
     });
 
     Route::middleware('role:comptable')->group(function () {
@@ -127,6 +146,8 @@ Route::middleware('auth')->group(function () {
             ->name('invoices.index');
         Route::get('/students/{student}/invoices', [\App\Http\Controllers\InvoiceController::class, 'forStudent'])
             ->name('invoices.student');
+        Route::get('/comptabilite/eleves', [\App\Http\Controllers\InvoiceController::class, 'students'])
+            ->name('invoices.students');
     });
 
     // ---------- Blocage / déblocage de comptes (admin / direction) ----------
