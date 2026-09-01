@@ -18,7 +18,7 @@
 
                 <div class="flex justify-end mb-4">
                     <a href="{{ route('exams.create') }}"
-                       class="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm">
+                       class="px-4 py-2 bg-primary-700 hover:bg-primary-600 text-white rounded-md text-sm">
                         + Planifier un examen
                     </a>
                 </div>
@@ -44,7 +44,7 @@
                                 <td class="py-2 pr-4">{{ $exam->exam_date->format('d/m/Y') }}</td>
                                 <td class="py-2 pr-4 flex gap-3">
                                     <a href="{{ route('grades.edit', $exam) }}" class="text-green-700">Saisir les notes</a>
-                                    <a href="{{ route('exams.edit', $exam) }}" class="text-indigo-600">Modifier</a>
+                                    <a href="{{ route('exams.edit', $exam) }}" class="text-primary-700">Modifier</a>
                                     <form method="POST" action="{{ route('exams.destroy', $exam) }}"
                                           onsubmit="return confirm('Supprimer cet examen ?');">
                                         @csrf
