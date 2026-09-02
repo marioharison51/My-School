@@ -41,4 +41,4 @@ Propriétaire — tous droits réservés. Toute utilisation, reproduction ou dis
 
 Contact
 
-Pour toute question, démonstration ou demande d'installation, contactez l'équipe Mety School.
+Pour toute question, démonstration ou demande d'installation, contactez l'équipe My School.
