@@ -1,58 +1,44 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+My School
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+La gestion de votre école, simplifiée. C'est une plateforme complète de gestion scolaire pensée pour les établissements privés : élèves, notes, paiements, communication — tout est centralisé dans un seul outil, accessible à chaque acteur de l'école selon son rôle.
 
-## About Laravel
+ À qui s'adresse My School
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Directions d'établissement pilotage global, gestion des comptes et des accès
+- Comptabilité suivi des paiements, factures et retards de scolarité
+- Enseignants Gestion des cours, saisie des notes, suivi de l'assiduité
+- Élèves accès à leurs cours, notes et bulletins
+- Parents suivi des résultats et des paiements de leurs enfants
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Fonctionnalités principales :Gestion des élèves
+Fiches complètes, historique de scolarité, cartes d'élève imprimables et suivi de l'assiduité.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Notes et examens
+Planification des examens, saisie des notes par les enseignants, génération automatique des bulletins par trimestre ou semestre.
 
-## Learning Laravel
+Paiements et facturation
+Enregistrement des paiements de scolarité, suivi des échéances, génération de reçus, alertes en cas de retard.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Communication
+Messagerie interne entre l'administration, les enseignants, les élèves et les parents. Annonces et événements diffusés à toute la communauté scolaire.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Gestion des accès
+Chaque utilisateur ne voit que ce qui le concerne : les rôles (administration, comptabilité, enseignant, élève, parent) déterminent précisément les fonctionnalités accessibles.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+Installation guidée
+Un assistant d'installation en quelques étapes configure automatiquement l'établissement au premier lancement — nom de l'école, base de données, création du compte administrateur.
 
-## Agentic Development
+Pourquoi My School
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+- Simple une interface claire, pensée pour être prise en main sans formation
+- Centralisé plus besoin de jongler entre cahiers, tableurs et messages épars
+- Personnalisable chaque établissement configure son propre nom et ses propres données, en toute indépendance
+- Évolutif conçu pour grandir avec les besoins de l'établissement
 
-```bash
-composer require laravel/boost --dev
+Licence
 
-php artisan boost:install
-```
+Propriétaire — tous droits réservés. Toute utilisation, reproduction ou distribution sans autorisation est interdite.
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Contact
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Pour toute question, démonstration ou demande d'installation, contactez l'équipe Mety School.
