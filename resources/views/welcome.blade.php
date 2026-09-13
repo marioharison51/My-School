@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="{{ config('app.name') }} — la gestion de votre école, simplifiée : élèves, notes, paiements, communication.">
 
-        <title>{{ config('app.name', 'Mety School') }}</title>
+        <title>{{ config('app.name', 'My School') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -21,7 +21,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
                 <a href="/" class="flex items-center gap-2">
                     <x-application-logo class="h-8 w-8 text-primary-600" />
-                    <span class="font-bold text-lg text-gray-900">{{ config('app.name', 'Mety School') }}</span>
+                    <span class="font-bold text-lg text-gray-900">{{ config('app.name', 'My School') }}</span>
                 </a>
 
                 <nav class="flex items-center gap-4">
