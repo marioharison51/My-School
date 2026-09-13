@@ -1,7 +1,7 @@
 <x-install-layout :step="1">
-    <h1 class="text-xl font-bold text-gray-900 mb-2">Bienvenue 👋</h1>
+    <h1 class="text-xl font-bold text-gray-900 mb-2">Bienvenue </h1>
     <p class="text-gray-500 text-sm mb-6">
-        Configurons votre espace {{ config('app.name', 'Mety School') }} en quelques étapes.
+        Configurons votre espace {{ config('app.name', 'My School') }} en quelques étapes.
     </p>
 
     @if ($errors->any())
