@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Installation — {{ config('app.name', 'Mety School') }}</title>
+        <title>Installation — {{ config('app.name', 'My School') }}</title>
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700,800&display=swap" rel="stylesheet" />
@@ -17,7 +17,7 @@
 
             <div class="flex items-center gap-2 mb-8">
                 <x-application-logo class="h-9 w-9 text-primary-600" />
-                <span class="font-bold text-xl text-gray-900">{{ config('app.name', 'Mety School') }}</span>
+                <span class="font-bold text-xl text-gray-900">{{ config('app.name', 'My School') }}</span>
             </div>
 
             <div class="w-full max-w-lg mb-8">
