@@ -8,9 +8,14 @@ APP_ENV=production
 ENVEOF
 fi
 
+mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views storage/logs storage/app/public
+chmod -R 775 storage bootstrap/cache
+
 if [ "${DB_CONNECTION:-sqlite}" = "sqlite" ]; then
     touch "${DB_DATABASE:-database/database.sqlite}"
 fi
+
+php artisan storage:link || true
 
 php artisan migrate --force
 
