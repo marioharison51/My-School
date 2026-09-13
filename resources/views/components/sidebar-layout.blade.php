@@ -67,7 +67,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{ $title ? $title . ' — ' : '' }}{{ config('app.name', 'Mety School') }}</title>
+        <title>{{ $title ? $title . ' — ' : '' }}{{ config('app.name', 'My School') }}</title>
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700,800&display=swap" rel="stylesheet" />
@@ -86,7 +86,7 @@
 
                 <div class="flex items-center gap-2 px-5 h-16 border-b border-slate-800">
                     <x-application-logo class="h-7 w-7 text-primary-500" />
-                    <span class="font-bold text-white">{{ config('app.name', 'Mety School') }}</span>
+                    <span class="font-bold text-white">{{ config('app.name', 'My School') }}</span>
                 </div>
 
                 <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1">
