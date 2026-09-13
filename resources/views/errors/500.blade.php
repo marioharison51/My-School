@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Erreur serveur — {{ config('app.name', 'Mety School') }}</title>
+    <title>Erreur serveur — {{ config('app.name', 'My School') }}</title>
     <style>
         body { font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; background: #f9fafb; color: #1f2937; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1rem; margin: 0; }
         .card { width: 100%; max-width: 28rem; text-align: center; }
@@ -18,7 +18,7 @@
 </head>
 <body>
     <div class="card">
-        <div class="brand">{{ config('app.name', 'Mety School') }}</div>
+        <div class="brand">{{ config('app.name', 'My School') }}</div>
 
         <div class="box">
             <div class="icon-wrap">
