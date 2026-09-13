@@ -3,10 +3,13 @@ set -e
 
 if [ ! -f .env ]; then
     cat > .env << 'ENVEOF'
-APP_NAME=Laravel
+APP_NAME="My School"
 APP_ENV=production
-APP_URL=https://my-school-ltmc.onrender.com
 ENVEOF
+fi
+
+if [ "${DB_CONNECTION:-sqlite}" = "sqlite" ]; then
+    touch "${DB_DATABASE:-database/database.sqlite}"
 fi
 
 php artisan migrate --force
