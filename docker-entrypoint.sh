@@ -8,6 +8,10 @@ APP_ENV=production
 ENVEOF
 fi
 
+if ! grep -q '^APP_KEY=.\+' .env; then
+    php artisan key:generate --force
+fi
+
 mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views storage/logs storage/app/public
 chmod -R 775 storage bootstrap/cache
 
