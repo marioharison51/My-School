@@ -57,7 +57,7 @@
                 </h1>
 
                 <p class="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
-                    Élèves, notes, paiements, messages avec les parents : {{ config('app.name', 'Mety School') }}
+                    Élèves, notes, paiements, messages avec les parents : {{ config('app.name', 'My School') }}
                     remplace vos cahiers, vos tableurs et vos allers-retours par un seul espace, accessible partout.
                 </p>
 
@@ -127,7 +127,7 @@
         {{-- Footer --}}
         <footer class="border-t border-gray-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-sm text-gray-400">
-                &copy; {{ date('Y') }} {{ config('app.name', 'Mety School') }}. Tous droits réservés.
+                &copy; {{ date('Y') }} {{ config('app.name', 'My School') }}. Tous droits réservés.
             </div>
         </footer>
 
