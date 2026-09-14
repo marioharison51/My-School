@@ -116,7 +116,7 @@
             <section class="bg-primary-700">
                 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
                     <h2 class="text-2xl sm:text-3xl font-bold text-white">Envie de simplifier la gestion de votre école ?</h2>
-                    <p class="mt-3 text-primary-100">{{ config('app.name', 'Mety School') }} s'installe avec le nom de votre établissement, prêt à l'emploi.</p>
+                    <p class="mt-3 text-primary-100">{{ config('app.name', 'My School') }} s'installe avec le nom de votre établissement, prêt à l'emploi.</p>
                     <a href="{{ route('register') }}" class="mt-8 inline-flex items-center px-6 py-3 bg-white text-primary-700 font-semibold rounded-md hover:bg-primary-50 transition">
                         Essayer gratuitement
                     </a>
